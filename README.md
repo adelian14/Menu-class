@@ -127,4 +127,21 @@ To go back to the main items (go back up one level), press the ***Backspace*** k
 ***Backspace*** - Go back up one level
 </br>
 
-# Adding functionality (Actions)
+### Adding functionality (Actions)
+
+Your menu is now looking good and almost ready to go, but it still lacks functionality.
+</br>
+Let me walk you through an example to demonstrate how to add functionality to the menu.
+</br>
+</br>
+Consider a program that functions as a calculator, offering options to add, subtract, multiply, or divide two numbers.
+</br>
+Here's how to build the menu for this application.
+```cpp
+MenuItem* calculator = new MenuItem();
+calculator->addItem("Add");
+calculator->addItem("Subtract");
+calculator->addItem("Multiply");
+calculator->addItem("Divide");
+```
+
