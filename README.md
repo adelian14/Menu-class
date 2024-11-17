@@ -280,3 +280,9 @@ int main(){
 }
 
 ```
+
+# Important notes
+- The maximum number of sub-options for a particular selection is 10.
+- The maximum length for an option name is 60 characters.
+- Actions will only be executed on options that have no further sub-options.
+- This is a proof of concept; while you may encounter unexpected bugs, everything should run smoothly in most cases.
