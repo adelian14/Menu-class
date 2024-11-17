@@ -159,9 +159,9 @@ class Addition:public Action{
 public:
     void execute(){
         cout << "Enter two numbers:" << endl;
-        int x,y;
+        double x,y;
         cin >> x >> y;
-        int sum = x + y;
+        double sum = x + y;
         cout << x << " + " << y << " = " << sum << endl;
     }
 };
@@ -172,9 +172,9 @@ class Subtraction:public Action{
 public:
     void execute(){
         cout << "Enter two numbers:" << endl;
-        int x,y;
+        double x,y;
         cin >> x >> y;
-        int result = x - y;
+        double result = x - y;
         cout << x << " - " << y << " = " << result << endl;
     }
 };
@@ -183,9 +183,9 @@ class Multiplication:public Action{
 public:
     void execute(){
         cout << "Enter two numbers:" << endl;
-        int x,y;
+        double x,y;
         cin >> x >> y;
-        int result = x * y;
+        double result = x * y;
         cout << x << " * " << y << " = " << result << endl;
     }
 };
@@ -194,9 +194,9 @@ class Division:public Action{
 public:
     void execute(){
         cout << "Enter two numbers:" << endl;
-        int x,y;
+        double x,y;
         cin >> x >> y;
-        int result = x / y;
+        double result = x / y;
         cout << x << " / " << y << " = " << result << endl;
     }
 };
@@ -219,4 +219,65 @@ calculator->getItem(2)->addAction(mulObj); // assigning functionality to the mul
 calculator->getItem(3)->addAction(divObj); // assigning functionality to the divide option
 
 calculator->start();
+```
+
+You have full flexibility to customize your class by adding any functionality or data needed for your program's requirements.
+However, it is essential to inherit from the `Action` class and override the `execute` function.
+This function acts as the primary entry point for executing your subprogram, allowing the menu system to trigger the desired behavior when the corresponding option is selected.
+Proper implementation of `execute` ensures seamless integration with the menu's action-handling mechanism.
+
+In fact, let’s explore a more efficient way to add functionality to this simple calculator.
+</br>
+Below is the complete code for the main file.
+
+```cpp
+
+#include <iostream>
+#include "menu.h"
+
+using namespace std;
+
+class Operation:public Action{
+    char op;
+public:
+    Operation(char x){
+        op=x;
+    }
+    void execute(){
+        cout << "Enter two numbers:" << endl;
+        double x,y;
+        cin >> x >> y;
+        double res = 0;
+        if(op=='+') res=x+y;
+        else if(op=='-') res = x-y;
+        else if(op=='*') res = x*y;
+        else if(op=='/') res = x/y;
+        cout << x << " " << op << " " << y << " = " << res << '\n';
+    }
+};
+
+int main(){
+    //creating menu items
+    MenuItem* calculator = new MenuItem();
+    calculator->addItem("Add");
+    calculator->addItem("Subtract");
+    calculator->addItem("Multiply");
+    calculator->addItem("Divide");
+
+    //creating action objects
+    Operation* addObj = new Operation('+');
+    Operation* subObj = new Operation('-');
+    Operation* mulObj = new Operation('*');
+    Operation* divObj = new Operation('/');
+
+    //assigning action to each menu option
+    calculator->getItem(0)->addAction(addObj);
+    calculator->getItem(1)->addAction(subObj);
+    calculator->getItem(2)->addAction(mulObj); 
+    calculator->getItem(3)->addAction(divObj);
+
+    //starting the menu
+    calculator->start();
+}
+
 ```
