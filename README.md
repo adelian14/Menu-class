@@ -134,7 +134,7 @@ Your menu is now looking good and almost ready to go, but it still lacks functio
 Let me walk you through an example to demonstrate how to add functionality to the menu.
 </br>
 </br>
-Consider a program that functions as a calculator, offering options to add, subtract, multiply, or divide two numbers.
+Consider a program that functions as a simple calculator, offering options to add, subtract, multiply, or divide two numbers.
 </br>
 Here's how to build the menu for this application.
 ```cpp
@@ -145,3 +145,78 @@ calculator->addItem("Multiply");
 calculator->addItem("Divide");
 ```
 
+To add functionality to each menu option, define a new class that inherits from the `Action` class.
+</br>
+In this derived class, override the `execute` function to implement the specific task you want the option to perform.
+</br>
+This approach allows each menu option to have custom behavior based on its assigned functionality.
+- `Action` is a class defined inside `menu.h` file.
+- `execute` is a pure virtual function defined inside `Action` class, the function is `void` and it takes no parameters.
+
+Let's take a look on how to add functionality to the `Add` option.
+```cpp
+class Addition:public Action{
+public:
+    void execute(){
+        cout << "Enter two numbers:" << endl;
+        int x,y;
+        cin >> x >> y;
+        int sum = x + y;
+        cout << x << " + " << y << " = " << sum << endl;
+    }
+};
+``` 
+Similarly, create a class for each option.
+```cpp
+class Subtraction:public Action{
+public:
+    void execute(){
+        cout << "Enter two numbers:" << endl;
+        int x,y;
+        cin >> x >> y;
+        int result = x - y;
+        cout << x << " - " << y << " = " << result << endl;
+    }
+};
+
+class Multiplication:public Action{
+public:
+    void execute(){
+        cout << "Enter two numbers:" << endl;
+        int x,y;
+        cin >> x >> y;
+        int result = x * y;
+        cout << x << " * " << y << " = " << result << endl;
+    }
+};
+
+class Division:public Action{
+public:
+    void execute(){
+        cout << "Enter two numbers:" << endl;
+        int x,y;
+        cin >> x >> y;
+        int result = x / y;
+        cout << x << " / " << y << " = " << result << endl;
+    }
+};
+```
+
+The next step is to instantiate objects of each derived class using pointers.
+</br>
+These objects represent the specific actions associated with the menu options.
+</br>
+Assign each object to its corresponding menu option by using the `addAction` function, ensuring that every menu item has its functionality properly linked.
+```cpp
+Addition* addObj = new Addition(); 
+Subtraction* subObj = new Subtraction(); 
+Multiplication* mulObj = new Multiplication(); 
+Division* divObj = new Division();
+
+calculator->getItem(0)->addAction(addObj); // assigning functionality to the add option 
+calculator->getItem(1)->addAction(subObj); // assigning functionality to the subtract option 
+calculator->getItem(2)->addAction(mulObj); // assigning functionality to the multiply option 
+calculator->getItem(3)->addAction(divObj); // assigning functionality to the divide option
+
+calculator->start();
+```
