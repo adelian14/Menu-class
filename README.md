@@ -2,17 +2,16 @@
 
 This project provides a class that simplifies creating console applications with interactive menus by managing the complexities of menu display and control, enabling developers to focus entirely on their application’s functionality.
 
-# Download and setup (Two options)
+# Download and setup
 
-### Option 1 - Download 'new_project' file
-
-Simply download and uncompress the `new_project` file to get a ready-to-use project.
-
-### Option 2 - Add menu class to your project
+### Add menu class to your project
 
 Download the `menu.cpp` and `menu.h` files, and add them to your project
 </br>
 Make sure to include `menu.h` in your main file.
+</br>
+</br>
+##### Note: If you encounter a problem in your IDE, a simple solution is to create `menu.h` and `menu.cpp` files in your project and copy the corresponding code into each file.
 
 ```cpp
 #include "menu.h"
